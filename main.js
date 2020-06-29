@@ -57,3 +57,24 @@ function getMiddle(s) {
     return s.slice(index, index + 1);
   }
 }
+// 6/29/2020
+
+// Given a month as an integer from 1 to 12, return to which quarter of the year it belongs as an integer number.
+
+// For example: month 2(February), is part of the first quarter; month 6(June), is part of the second quarter; and month 11(November), is part of the fourth quarter.
+
+const quarterOf = (month) => {
+  let quarter1 = [1, 2, 3],
+    quarter2 = [4, 5, 6],
+    quarter3 = [7, 8, 9],
+    quarter4 = [10, 11, 12];
+  if (quarter1.includes(month)) {
+    return 1;
+  } else if (quarter2.includes(month)) {
+    return 2;
+  } else if (quarter3.includes(month)) {
+    return 3;
+  } else if (quarter4.includes(month)) {
+    return 4;
+  }
+};
