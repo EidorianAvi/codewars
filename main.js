@@ -78,3 +78,25 @@ const quarterOf = (month) => {
     return 4;
   }
 };
+
+// 6/30/2020
+
+// Your goal in this kata is to implement a difference function, which subtracts one list from another and returns the result.
+
+// It should remove all values from list a, which are present in list b.
+
+//   arrayDiff([1, 2], [1]) == [2]
+// If a value is present in b, all of its occurrences must be removed from the other:
+
+// arrayDiff([1, 2, 2, 2, 3], [2]) == [1, 3]
+
+function arrayDiff(a, b) {
+  const output = [];
+  a = a.toString().split(",").map(Number);
+  b = b.toString().split(",").map(Number);
+
+  for (var i in a) {
+    if (!b.includes(a[i]) && a != 0) output.push(a[i]);
+  }
+  return output;
+}
