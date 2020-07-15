@@ -166,3 +166,5 @@ function highAndLow(numbers) {
   let low = output.push(splitArray.reduce((a, b) => Math.min(a, b)));
   return output.join(" ");
 }
+
+
