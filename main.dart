@@ -79,3 +79,24 @@ int solution(int n) {
       spread.where((number) => number % 3 == 0 || number % 5 == 0);
   return threesAndFives.reduce((i, n) => i + n);
 }
+
+// 07/23/2020
+
+// This time no story, no theory. The examples below show you how to write function accum:
+
+// Examples:
+
+// accum("abcd") -> "A-Bb-Ccc-Dddd"
+// accum("RqaEzty") -> "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+// accum("cwAt") -> "C-Ww-Aaa-Tttt"
+
+String accum(String str) {
+  var split = str.split('');
+  var output = [];
+  for (var i = 0; i < split.length; i++) {
+    String letter = (split[i] * (i + 1)).toLowerCase();
+    String capitalized = letter[0].toUpperCase() + letter.substring(1);
+    output.add(capitalized);
+  }
+  return output.join('-');
+}
