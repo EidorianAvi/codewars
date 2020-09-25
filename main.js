@@ -212,3 +212,48 @@ function duplicateCount(text){
   }
   return [...new Set(letters)].length;
 }
+
+
+
+/*
+  Input:
+  flightLength: duration oof the flight in minutes
+  movies: array of movies times in minutes
+  Output: 
+  boolean, true if there exists TWO different movies that add up EXACTLY to the flightLength
+  Examples:
+  flightLength 160
+  movies [80, 110, 40] => false
+  [80, 110, 80] => true
+  [20, 30, 110, 40, 50] => true
+*/
+
+// Big O notation
+/*
+n is the length of the movies array
+
+O(1) - constant
+O(n) - linear
+O(n^2) - quadratic
+O(2^n) - exponential
+*/
+function twoMovies(flightLength, movies){
+	const movieObj = { }
+	
+	for( let i = 0; i < movies.length; i++) {
+		let target = flightLength - movies[i]
+		
+		// looking for the target in the rest of the array
+		if (movieObj[target]) {
+			return true
+		}
+		movieObj[movies[i]] = "anything";
+
+		// for (let j = i+1; j < movies.length; j++){
+		// 	if(movies[j] === target) {
+		// 		return true;
+		// 	} 
+		// }
+	}
+	return false;
+}
