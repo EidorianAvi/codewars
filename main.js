@@ -317,3 +317,42 @@ function jumpingOnClouds(c) {
   }
   return counter
 }
+
+
+// * Complete the 'gradingStudents' function below.
+//  *
+//  * The function is expected to return an INTEGER_ARRAY.
+//  * The function accepts INTEGER_ARRAY grades as parameter.
+//  */
+
+function gradingStudents(grades) {
+    
+    let integarArray = [];
+    
+    grades.forEach((grade) => {
+        if(grade < 38){
+            integarArray.push(grade);
+        } else {
+            let splitGrade = grade.toString().split("");
+            switch(parseInt(splitGrade[1])){
+                case 3:
+                    integarArray.push(Math.ceil(grade/5)*5);
+                    break
+                case 4:
+                    integarArray.push(Math.ceil(grade/5)*5);
+                    break
+                case 8: 
+                    integarArray.push(Math.ceil(grade/5)*5);
+                    break
+                case 9: 
+                    integarArray.push(Math.ceil(grade/5)*5);
+                    break
+                default: 
+                    integarArray.push(grade);
+                    break
+            }            
+        }        
+    });
+    
+    return integarArray;
+}
