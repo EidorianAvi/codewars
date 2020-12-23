@@ -302,3 +302,18 @@ function validPhoneNumber(phoneNumber){
   
   return true;
 }
+
+// Complete the jumpingOnClouds function below.
+function jumpingOnClouds(c) {
+  let counter = 0;
+  let index = 0;
+  while(index < c.length - 1){
+      if(c[index + 2] !== 1 && index + 2 < c.length){
+          index = index + 2;
+      } else {
+          index = index + 1;
+      }
+      counter += 1;
+  }
+  return counter
+}
