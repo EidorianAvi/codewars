@@ -356,3 +356,30 @@ function gradingStudents(grades) {
     
     return integarArray;
 }
+
+
+// * Complete the timeConversion function below.
+
+function timeConversion(s) {
+   
+   let timeWithoutPeriod = s.substring(0, 8);
+   let splitTime = timeWithoutPeriod.split(":");
+   
+   if(s.includes("AM")){
+       if(splitTime[0] != 12){
+           return timeWithoutPeriod;
+       } else {
+           splitTime[0] = "00";
+           return splitTime.join(":");
+       }
+   } else if(s.includes("PM")){
+       if(splitTime[0] != 12){
+           let militaryHour = (parseInt(splitTime[0]) + 12).toString();
+           splitTime[0] = militaryHour;
+           return splitTime.join(":");
+       } else {
+           return timeWithoutPeriod;
+       }
+   } 
+   
+}
