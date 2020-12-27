@@ -383,3 +383,42 @@ function timeConversion(s) {
    } 
    
 }
+
+
+function minimumBribes(q) {
+  let minBribes = 0;
+  for(let i = 0; i < q.length; i++){
+      if(q[i] - (i+1) > 2){
+          console.log("Too chaotic");
+          minBribes = null;
+          break
+      }
+      for(let j = Math.max(0, q[i] - 2); j < i; j++){
+          if(q[j] > q[i]){
+              minBribes++;
+          }
+      }
+  }
+  if( minBribes !== null ){
+      console.log(minBribes);
+  }
+}
+
+
+// Complete the minimumSwaps function below.
+function minimumSwaps(arr) {
+  let swaps = 0;
+  for(let i =0; i< arr.length; i++){
+      let currentNumber = arr[i];
+      let properIndexNumber = arr[currentNumber - 1];
+      while(currentNumber !== properIndexNumber){
+          arr[i] = properIndexNumber;
+          arr[currentNumber - 1] = currentNumber;
+          swaps++;
+          currentNumber = properIndexNumber;
+          properIndexNumber = arr[currentNumber - 1];
+      } 
+
+  }
+  return swaps;
+}
