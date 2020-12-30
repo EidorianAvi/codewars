@@ -449,3 +449,37 @@ function arrayManipulation(n, queries) {
   return highestNumber;
 
 }
+
+
+// Complete the arrayManipulation function below.
+
+// This solution is optomized for a time complexity of O(n) but I don't fully understand it .
+
+function arrayManipulation (n, queries) {
+        
+  let zeroArray = Array(n);
+  let max = 0;
+  let current = 0;
+  
+  queries.forEach((query) => {
+     zeroArray[query[0] - 1] = zeroArray[query[0] - 1] || {initial: 0, final: 0};
+     zeroArray[query[1] - 1] = zeroArray[query[1] - 1] || {initial: 0, final: 0};
+     zeroArray[query[0] - 1].initial += query[2];
+     zeroArray[query[1] - 1].final += query[2];
+  });
+  
+  console.log(zeroArray);
+  
+  zeroArray.forEach((index) => {
+     if(index){
+         current += index.initial;
+         if(max < current){
+             max = current;
+         }
+         current -= index.final;
+     } 
+  });
+  
+  return max;
+  
+}
