@@ -450,32 +450,39 @@ function arrayManipulation(n, queries) {
 
 }
 
-
+//HACKERRANK ARRAY MANIPULATION
 // Complete the arrayManipulation function below.
-
-// This solution is optomized for a time complexity of O(n) but I don't fully understand it .
-
 function arrayManipulation (n, queries) {
-        
+    
+  //First I create an array in length of n    
   let zeroArray = Array(n);
+  
+  //These values will be used to determine what the max value will be
   let max = 0;
   let current = 0;
   
+  //Iterate through each query and assign initial and final values based on position
   queries.forEach((query) => {
+      //First I check if there is a value at that position. If not I initialize its initial value and final values
      zeroArray[query[0] - 1] = zeroArray[query[0] - 1] || {initial: 0, final: 0};
      zeroArray[query[1] - 1] = zeroArray[query[1] - 1] || {initial: 0, final: 0};
+     
+     //After that I increment both the start and final positions by the value.
      zeroArray[query[0] - 1].initial += query[2];
      zeroArray[query[1] - 1].final += query[2];
   });
   
-  console.log(zeroArray);
-  
+  //Iterate through the zero array 
   zeroArray.forEach((index) => {
+      //First I check if there is a value at that index
      if(index){
+         //If there is I increment the current value
          current += index.initial;
+         //I then check to see if the current value is larger than the max and if it is I assign the max is reassigned to be the current value.
          if(max < current){
              max = current;
          }
+         // I then remove the final value of the index of the current value.
          current -= index.final;
      } 
   });
