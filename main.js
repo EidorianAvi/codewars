@@ -422,3 +422,30 @@ function minimumSwaps(arr) {
   }
   return swaps;
 }
+
+// Complete the arrayManipulation function below.
+
+// While this completes the task it runs at O(n^2) so it's not optimized enough.
+function arrayManipulation(n, queries) {
+  let mapOfAdditions = {};
+  let highestNumber = 0;
+  
+  queries.forEach((query) => {
+     for(let i = query[0] - 1; i <= query[1] - 1; i++){
+         if(!mapOfAdditions[i]){
+             mapOfAdditions[i] = query[2];
+         } else {
+             mapOfAdditions[i] += query[2];
+         }
+     }
+  });
+  
+  for(const sum in mapOfAdditions){
+      if( mapOfAdditions[sum] > highestNumber){
+          highestNumber = mapOfAdditions[sum];
+      }
+  }
+  
+  return highestNumber;
+
+}
