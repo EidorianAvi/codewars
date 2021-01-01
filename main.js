@@ -490,3 +490,27 @@ function arrayManipulation (n, queries) {
   return max;
   
 }
+
+// Complete the breakingRecords function in the editor below. It must return an integer array containing the numbers of times she broke her records. Index  is for breaking most points records, and index  is for breaking least points records.
+
+// breakingRecords has the following parameter(s):
+
+// scores: an array of integers
+
+function breakingRecords(scores) {
+  let bestRecord = scores[0];
+  let worstRecord = scores[0];
+  let exceededExpectations = 0;
+  let belowExpectations = 0;
+  
+  for(let i = 1; i < scores.length; i++){
+      if(scores[i] > bestRecord){
+          bestRecord = scores[i];
+          exceededExpectations++;
+      } else if (scores[i] < worstRecord){
+          worstRecord = scores[i];
+          belowExpectations++;
+      } 
+  }
+  return [exceededExpectations, belowExpectations];
+}
