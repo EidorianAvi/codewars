@@ -533,3 +533,20 @@ function minimumBribes(q) {
         console.log(minBribes);
     }
 }
+
+// Complete the birthday function below.
+// s is the numbers in the squares of chocolate
+// d is his birthday and m is his birth month
+// This function should return an integer with the number of ways she could set up the chocolate squares so that he gets m amount of pieces and their length equels d in length
+// The pieces will be connected
+function birthday(s, d, m) {
+    let numberOfWays = 0;
+    
+    for(let i = 0; i < s.length - m+1; i++){
+        if (s.slice(i, i+m).reduce((a, b) => a + b) === d){
+         numberOfWays++   
+        }
+    }
+        
+    return numberOfWays;
+}
