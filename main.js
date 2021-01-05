@@ -594,3 +594,34 @@ function dayOfProgrammer(year) {
   
   
 }
+
+// Complete the migratoryBirds function below.
+// arr is list of birds by ID.
+// Returns most common birds ID.
+// If two birds have the same amount of birds it returns the one with the lower ID
+function migratoryBirds(arr) {
+    let birdMap = {};
+    let highestBirdCount = 0;
+    let birdByID = 0;
+    
+    //First I map the birds by id and count
+    for(let i = 0; i < arr.length; i++){
+        if(!birdMap[arr[i]]){
+            birdMap[arr[i]] = 1;
+        } else {
+            birdMap[arr[i]]++;
+        }
+    }
+    
+    //Then I check which bird has the highest count and lowest id number
+    
+    for(let id in birdMap){
+        if((birdMap[id] > highestBirdCount) || (birdMap[id] == highestBirdCount && id < birdByID)){
+            highestBirdCount = birdMap[id];
+            birdByID = id;
+        }
+    }
+    
+    return birdByID;
+
+}
