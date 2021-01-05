@@ -568,3 +568,29 @@ function compareTriplets(a, b) {
     
     return `${aliceScore} ${bobScore}`
 }
+
+
+
+// Complete the dayOfProgrammer function below.
+// Takes in a year
+// Returns a String in the form of dd.mm.yyyy of the 256th day of the year
+// Leap years happen every 4 years
+// range is from 1700-2700
+
+function dayOfProgrammer(year) {
+    
+  //Handles the one year they were transitioning to a new calender
+  if(year === 1918){
+      return `26.09.${year}`;
+  }  
+  
+  //First checks to see if it's a leap year in either of the calenders
+  //If not it returns the standard non leap year programmers day
+  if((year <= 1917 && year % 4 === 0) || year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0)){
+      return `12.09.${year}`;
+  } else {
+      return `13.09.${year}`;
+  }
+  
+  
+}
