@@ -625,3 +625,27 @@ function migratoryBirds(arr) {
     return birdByID;
 
 }
+
+// Format a string of names like 'Bart, Lisa & Maggie'.
+
+function list(names){
+  let characters = [];
+  let lastPosition = characters.length - 1;
+  
+  for(let i = 0; i < names.length; i ++){
+    characters.push(names[i].name);
+  }
+  
+  if(characters.length === 0){
+    return '';
+  } else if (characters.length === 1){
+    return characters.join('');
+  } else if (characters.length === 2){
+    return characters.join(' & ')
+  } else {
+    let allNamesButLast = characters.slice(0, lastPosition);
+    let lastName = characters.slice(lastPosition);
+    return allNamesButLast.join(', ') + ` & ${lastName}`;
+  }
+
+}
