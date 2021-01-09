@@ -649,3 +649,111 @@ function list(names){
   }
 
 }
+
+// First 8 bits in string are the r value
+// Second 8 bits in string are the g value
+// Third 8 bits in string are the b value
+
+// Finds which color the string is closest to.
+// If equal distance to  two colors it will return as ambiguous
+
+
+function closestCol(pixels) {
+    //This is where I'll store the strings 
+    let outputArray = [];
+    
+    // I loop through each pixel and use a helper function to find closest value string
+    for(let pixel of pixels){
+        outputArray.push(calculateEachString(pixel));
+    }
+    
+    return outputArray;
+}
+
+// This helper function handles each pixel and does the calculations for distance.
+
+function calculateEachString(pixel){
+    // Array that will hold the values of each distance
+    let distanceArray = [];
+    
+    // Seperated the bits into 3 bytes
+    const firstEight = pixel.split('').slice(0, 8);
+    const secondEight = pixel.split('').slice(8, 16);
+    const thirdEight = pixel.split('').slice(16, 24);
+    
+    
+    // Helper function that translates each Byte into its number value
+    const redValue = convertBinaryToNumber(firstEight);
+    const greenValue = convertBinaryToNumber(secondEight);
+    const blueValue = convertBinaryToNumber(thirdEight);
+    
+    //Euclidian distance calculations as provided with RGB values
+    const blackDistance = Math.sqrt(Math.pow((redValue - 0), 2) + Math.pow((greenValue - 0), 2) + Math.pow((blueValue - 0), 2));
+    const whiteDistance = Math.sqrt(Math.pow((redValue - 255), 2) + Math.pow((greenValue - 255), 2) + Math.pow((blueValue - 255), 2));
+    const redDistance = Math.sqrt(Math.pow((redValue - 255), 2) + Math.pow((greenValue - 0), 2) + Math.pow((blueValue - 0), 2));
+    const greenDistance = Math.sqrt(Math.pow((redValue - 0), 2) + Math.pow((greenValue - 255), 2) + Math.pow((blueValue - 0), 2));
+    const blueDistance = Math.sqrt(Math.pow((redValue - 0), 2) + Math.pow((greenValue - 0), 2) + Math.pow((blueValue - 255), 2));
+
+    //Pushes the values into the distanceArray
+    distanceArray.push(blackDistance);
+    distanceArray.push(whiteDistance);
+    distanceArray.push(redDistance);
+    distanceArray.push(greenDistance);
+    distanceArray.push(blueDistance);
+    
+    //Uses helper function to find string with lowest distance value and returns it.
+    return findLowest(distanceArray);
+}
+
+//Converts array of strings representing binary into number value
+function convertBinaryToNumber(array){
+    
+    let sum = 0;
+    //current binary value
+    let counter = 1;
+    
+    array.reverse().forEach((index) => {
+        if(index === '1'){
+            sum += counter
+        }
+        counter *= 2;
+    });
+
+    return sum;
+}
+
+// Helper function that finds lowest distance value in array and returns it as appropriate string value.
+function findLowest(distanceArray){
+    let lowest = Infinity;
+    let answer;
+    
+    // Calculates the lowest distance and assigns the string to the indexed value
+    for(let i = 0; i < distanceArray.length; i++){
+        if(distanceArray[i] === lowest){
+            answer = 'Ambiguous';
+        } else if(distanceArray[i] < lowest){
+            lowest = distanceArray[i];
+            switch(i){
+                case 0:
+                    answer = 'Black'
+                    break
+                case 1: 
+                    answer = 'White'
+                    break
+                case 2:
+                    answer = 'Red'
+                    break
+                case 3:
+                    answer = 'Green'
+                    break
+                case 4: 
+                    answer = 'Blue'
+                    break
+                default:
+                    null
+            }
+        }
+    }
+    
+    return answer;
+}
