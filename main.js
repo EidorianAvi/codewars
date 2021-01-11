@@ -782,3 +782,22 @@ function persistence(num) {
 
   return 1 + persistence(product);
 }
+
+// bill: an array of integers representing the cost of each item ordered
+// k: an integer representing the zero-based index of the item Anna doesn't eat
+// b: the amount of money that Anna contributed to the bill
+// Complete the bonAppetit function below.
+
+//If the bill is even log 'Bon Appetit' if it isn't it prints how much money Brian owes Anna
+
+function bonAppetit(bill, k, b) {
+    let total = bill.reduce((acc, val) => acc + val, 0);
+    let annasBill = (total - bill[k])/2;
+    
+    if(b - annasBill === 0){
+        console.log("Bon Appetit");
+    } else {
+        console.log(b - annasBill);
+    }
+
+}
