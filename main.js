@@ -801,3 +801,20 @@ function bonAppetit(bill, k, b) {
     }
 
 }
+
+// Complete the pageCount function below.
+// int n: the number of pages in the book
+// int p: the page number to turn to
+
+//Can start at either the front or the back of the back.
+//Returns an Integer with the smalles amount of page a user can turn to reach the designated page. 
+
+function pageCount(n, p) {
+  const fromFront = Math.floor(p/2);
+  const fromBack = Math.floor((n/2)-fromFront);
+  const shortestLength = [fromFront, fromBack].sort((a, b) => a - b)[0];
+  
+  return shortestLength;
+
+
+}
