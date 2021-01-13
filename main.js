@@ -854,3 +854,22 @@ function getMoneySpent(keyboards, drives, b) {
     
     return highestPossible;
 }
+
+// Complete the catAndMouse function below.
+// int x: Cat 's position
+// int y: Cat 's position
+// int z: Mouse 's position
+// RETURNS string: Either 'Cat A', 'Cat B', or 'Mouse C' depending on which cat reaches the mouse first. IF they reach it at the same time the mouse gets away. 
+
+function catAndMouse(x, y, z) {
+  const catADist = Math.abs(x - z);
+  const catBDist = Math.abs(y - z);
+  
+  if(catADist === catBDist){
+      return 'Mouse C';
+  } else if (catADist > catBDist){
+      return 'Cat B';
+  } else {
+      return 'Cat A';
+  }
+}
