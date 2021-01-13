@@ -818,3 +818,39 @@ function pageCount(n, p) {
 
 
 }
+
+
+
+// int keyboards[n]: the keyboard prices
+// int drives[m]: the drive prices
+// int b: the budget
+
+// RETURNS int: the maximum that can be spent, or  if it is not possible to buy both items
+
+function getMoneySpent(keyboards, drives, b) {
+    let highestPossible = 0;
+    
+    //First I will sort the prices
+    const sortedKeyboards = keyboards.sort((a, b) => a - b);
+    const sortedDrives = drives.sort((a, b) => a - b);
+    
+    //Then I will check if the two lowest prices are possible to purchase together.
+    if(sortedKeyboards[0] + sortedDrives[0] > b){
+        return -1;
+    }
+    
+    //I will then cycle through both arrays and see what the largest value I can get.
+    //This will however lead to O(n^2) time complexity. 
+    //This should still be acceptable due to the restrictions on params. 
+    
+    for(let i = 0; i < keyboards.length; i++){
+        for(let j = 0; j < drives.length; j++){
+            let sumOfBoth = keyboards[i] + drives[j];
+            if(sumOfBoth <= b && sumOfBoth > highestPossible){
+                highestPossible = sumOfBoth;
+            }
+        }
+    }
+    
+    return highestPossible;
+}
