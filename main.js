@@ -873,3 +873,19 @@ function catAndMouse(x, y, z) {
       return 'Cat A';
   }
 }
+
+
+/*
+ * Complete the 'birthdayCakeCandles' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts INTEGER_ARRAY candles as parameter.
+ */
+
+function birthdayCakeCandles(candles) {
+  let tallestCandle = candles.sort((a,b) => a-b)[candles.length-1];
+  let onlyTallest = candles.filter((candle) => candle === tallestCandle);
+  
+  return onlyTallest.length;
+
+}
