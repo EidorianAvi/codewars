@@ -889,3 +889,30 @@ function birthdayCakeCandles(candles) {
   return onlyTallest.length;
 
 }
+
+/*
+ * Complete the 'pickingNumbers' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts INTEGER_ARRAY a as parameter.
+ */
+
+//It takes in an array.
+//It's looking for the longest subarray where the difference between values is 1.
+//RETURNS an integer of the length of that subarray
+
+function pickingNumbers(a) {  
+  let longestSubArray = 0;
+
+  for(let i = 0; i < a.length; i++){
+      let count = 0;
+      for(let j = 0; j < a.length; j++){
+          if(a[j] === a[i] || a[j] === (a[i] + 1)){
+              count++;
+          }       
+      }
+      longestSubArray = Math.max(longestSubArray, count);
+  
+  }
+  return longestSubArray;
+}
