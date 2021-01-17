@@ -916,3 +916,13 @@ function pickingNumbers(a) {
   }
   return longestSubArray;
 }
+
+//k is how high you the runner can jump
+//height is the height of every hurdle
+//the function returns 0 if the runner can jump all of the hurdles
+//It returns how much more height is needed to clear tallest hurdle from runners standard jump 
+
+// Complete the hurdleRace function below.
+function hurdleRace(k, height) {
+  return Math.max(...height) - k > 0 ? Math.max(...height) - k : 0;
+}
