@@ -926,3 +926,28 @@ function pickingNumbers(a) {
 function hurdleRace(k, height) {
   return Math.max(...height) - k > 0 ? Math.max(...height) - k : 0;
 }
+
+// Complete the designerPdfViewer function below.
+
+// h is an array of height values of the alphabet. index 0 is a index 25 is z
+// word is the given string.
+
+// The function returns the area of the word.
+// The area will be the largest letter height times the length of the word.
+
+function designerPdfViewer(h, word) {
+  const wordLength = word.length;
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
+  
+  let tallestLetter = 0;
+  
+  for(let i = 0; i < word.length; i++){
+      const letterIndex = alphabet.indexOf(word[i]);
+      if(h[letterIndex] > tallestLetter){
+          tallestLetter = h[letterIndex];
+      }
+  }
+  
+  return wordLength * tallestLetter;
+  
+}
