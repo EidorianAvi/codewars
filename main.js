@@ -973,3 +973,27 @@ function divisibleSumPairs(n, k, ar) {
   return counter;
 
 }
+
+// Complete the angryProfessor function below.
+
+// int k: the threshold number of students
+// int a[n]: the arrival times of the  students
+// Returns 
+
+// string: either YES if class is cancelled or NO if it isn't cancelled
+
+function angryProfessor(k, a) {
+  let onTime = 0;
+  
+  for(let i = 0; i < a.length; i++){
+      if(a[i] <= 0){
+          onTime++;
+      }
+  }
+  
+  if(onTime >= k){
+      return 'NO';
+  } else {
+      return 'YES';
+  }
+}
