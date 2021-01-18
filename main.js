@@ -951,3 +951,25 @@ function designerPdfViewer(h, word) {
   return wordLength * tallestLetter;
   
 }
+
+// Complete the divisibleSumPairs function below.
+
+// int n: the length of array 
+// int ar[n]: an array of integers
+// int k: the integer divisor
+
+// Returns int: the number of pairs where a[i] + a[j] is divisible by k
+
+function divisibleSumPairs(n, k, ar) {
+  let counter = 0;
+  for(let i = 0; i < ar.length; i ++){
+      for(let j = i + 1; j < ar.length; j++){
+          if(i < j && (ar[i] + ar[j]) % k === 0){
+              counter++;
+          }
+      }
+  }
+  
+  return counter;
+
+}
