@@ -997,3 +997,24 @@ function angryProfessor(k, a) {
       return 'YES';
   }
 }
+
+// Complete the utopianTree function below.
+
+// int n: the number of growth cycles to simulate
+
+// Returns int: the height of the tree after the given number of cycles
+
+//Every spring the tree doubles in size and every summer the tree grows by 1 meter
+
+function utopianTree(n) {
+  let treeHeight = 1;
+  for(let i = 1; i <= n; i++){
+      if(i % 2 === 0){
+          treeHeight++;
+      } else {
+          treeHeight *= 2;
+      }
+  }
+  
+  return treeHeight;
+}
