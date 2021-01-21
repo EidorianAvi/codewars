@@ -1018,3 +1018,26 @@ function utopianTree(n) {
   
   return treeHeight;
 }
+
+// int i: the starting day number
+// int j: the ending day number
+// int k: the divisor
+
+
+// Returns int: the number of beautiful days in the range
+
+// A day is considered beautiful if its normal and reverse are divisible by k 
+
+// Complete the beautifulDays function below.
+function beautifulDays(i, j, k) {
+  let beautifulDays = 0;
+  
+  for(let l = i; l <= j; l++){
+      const reversedNumber = parseInt(l.toString().split('').reverse().join(''));
+      if(Math.abs(l - reversedNumber) % k === 0){
+          beautifulDays++;
+      }
+  }
+  
+  return beautifulDays;
+}
