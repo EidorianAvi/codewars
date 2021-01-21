@@ -1041,3 +1041,23 @@ function beautifulDays(i, j, k) {
   
   return beautifulDays;
 }
+
+// Complete the viralAdvertising function below.
+// int n: the day number to report
+
+// Returns int: the cumulative likes at that day
+
+//Starts with 5 and half those people share it with 3 people each
+
+function viralAdvertising(n) {
+  let shared = 5;
+  let cumulative = 0;
+  
+  for(let i = 1; i <= n; i++){ 
+      let peopleWhoLiked = Math.floor(shared / 2);
+      cumulative += peopleWhoLiked;
+      shared = peopleWhoLiked * 3;
+  }
+  
+  return cumulative;
+}
