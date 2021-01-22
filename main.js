@@ -1061,3 +1061,29 @@ function viralAdvertising(n) {
   
   return cumulative;
 }
+
+// Complete the whatFlavors function below
+// cost: an array of integers representing price for a flavor
+// money: an integer representing the amount of money they have to spend
+
+// Prints two space-separated integers denoting the respective indices for the two distinct flavors they choose to purchase in ascending order. Recall that each ice cream flavor has a unique ID number in the inclusive range from  to .
+function whatFlavors(cost, money) {
+  let indexes = {};
+  let output = [];
+      
+  for(let i = 0; i < cost.length; i++) {
+      indexes[cost[i]] = i;
+  }
+  
+  // console.log(indexes);
+  for(let i = 0; i <  cost.length; i++) {
+      let difference = money - cost[i];
+      if(indexes.hasOwnProperty(difference) && indexes[difference] !== i){
+          output.push(i + 1);
+          output.push(indexes[difference] + 1);
+      }
+  }
+  
+  console.log(Math.min(...output), Math.max(...output));
+
+}
