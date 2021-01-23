@@ -1087,3 +1087,25 @@ function whatFlavors(cost, money) {
   console.log(Math.min(...output), Math.max(...output));
 
 }
+
+// Complete the minimumAbsoluteDifference function below.
+
+// int arr[n]: an array of integers
+
+// Returns int: the minimum absolute difference found
+
+function minimumAbsoluteDifference(arr) {
+  arr.sort((a, b) => a - b);
+  let lowestDifference = Infinity;
+  
+  for(let i = 0; i < arr.length; i++){
+      if(arr[i + 1]){
+          if(Math.abs(arr[i + 1] - arr[i]) < lowestDifference){
+              lowestDifference = Math.abs(arr[i + 1] - arr[i]);
+          }
+      }     
+  }
+  
+  return lowestDifference;
+
+}
