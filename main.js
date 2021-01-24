@@ -1109,3 +1109,20 @@ function minimumAbsoluteDifference(arr) {
   return lowestDifference;
 
 }
+
+
+function permutationEquation(p) {
+  //Form an indexarray and find the index of x and then find the index of that value from the indexArray.
+  let indexArray = [];
+  let temp;
+  let resArray = [];
+  for(let i = 0; i < p.length; i++){
+      indexArray[p[i]] = i + 1;
+  }
+  for(let x = 1; x <= p.length; x++){
+      temp = indexArray[x];
+      resArray.push(indexArray[temp]);     
+  }
+  return resArray;
+
+}
