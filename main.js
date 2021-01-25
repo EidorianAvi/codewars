@@ -1126,3 +1126,18 @@ function permutationEquation(p) {
   return resArray;
 
 }
+
+// Complete the findDigits function below.
+function findDigits(n) {
+  let split = n.toString().split('');
+  let counter = 0;
+  
+  for(let i = 0; i < split.length; i++){
+      if(n % split[i] === 0){
+          counter ++;
+      }
+  }
+  
+  return counter;
+
+}
