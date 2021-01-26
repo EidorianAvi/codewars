@@ -1141,3 +1141,16 @@ function findDigits(n) {
   return counter;
 
 }
+
+const diagonalDifference = (array) => {
+  let firstDiagonal = 0;
+  let secondDiagonal = 0;
+  const lastElementIndex = array.length - 1;
+
+  array.forEach((row, index) => {
+    firstDiagonal += row[index];
+    secondDiagonal += row[lastElementIndex - index];
+  });
+
+  return Math.abs(firstDiagonal - secondDiagonal);
+};
