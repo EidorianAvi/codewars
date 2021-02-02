@@ -1228,7 +1228,7 @@ function capitalize(s){
 
 // RETURNS 1
 
-function chooseFlask(requirements, flaskTypes, markings) {
+function chsFlsk(requirements, flaskTypes, markings) {
   // Write your code here
   requirements.sort((a, b) => a - b);
   // console.log({requirements, flaskTypes, markings})
