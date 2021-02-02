@@ -1154,3 +1154,128 @@ const diagonalDifference = (array) => {
 
   return Math.abs(firstDiagonal - secondDiagonal);
 };
+
+function capitalize(s){
+  let output = []
+  let split = s.split('');
+  
+  let evens = split.map((letter, i) => {
+    if (i % 2 == 0){
+      return letter.toUpperCase();
+    } else {
+      return letter.toLowerCase();
+    }
+  });
+  output.push(evens.join(''));
+  
+   let odds = split.map((letter, i) => {
+    if (i % 2 != 0){
+      return letter.toUpperCase();
+    } else {
+      return letter.toLowerCase();
+    }
+  });
+  output.push(odds.join(''));
+  
+  return output
+}
+
+
+/*
+ * Complete the 'chooseFlask' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts following parameters:
+ *  1. INTEGER_ARRAY requirements
+ *  2. INTEGER flaskTypes
+ *  3. 2D_INTEGER_ARRAY markings
+ */
+
+// zero based index
+// RETURN minimum waste flask and will return the minimum index 
+// IF no correct answers return -1
+
+// STDIN    Function
+// -----    --------
+// 2    →   requirements[] size n = 2
+// 4    →   requirements = [4, 6]
+// 6
+// 2    →   flaskTypes = 2
+// 5    →   markings[] size total_marks = 5
+// 2    →   markings[][] size columns = 2 (always)
+// 0 5  →   markings = [[0, 5], [0, 7], [0, 10], [1, 4], [1, 10]]
+// 0 7
+// 0 10
+// 1 4
+// 1 10
+
+//RETURNS 0
+
+// STDIN    Function
+// -----    --------
+// 2    →   requirements[] size n = 2
+// 10   →   requirements = [10, 15]
+// 15    
+// 3    →   flaskTypes = 3
+// 6    →   markings[] size totalMarks = 6
+// 2    →   markings[][] size columns = 2
+// 0 11 →   markings = [[0, 11], [0, 20], [1, 11], [1, 17], [2, 12], [2, 16]]
+// 0 20
+// 1 11
+// 1 17
+// 2 12
+// 2 16
+
+// RETURNS 1
+
+function chooseFlask(requirements, flaskTypes, markings) {
+  // Write your code here
+  requirements.sort((a, b) => a - b);
+  // console.log({requirements, flaskTypes, markings})
+  
+  let minWaste = Infinity;
+  let minWasteIndex = -1;
+  
+  // read the input from markings
+  let flasks = {}
+  // let possibleFlasks = [];
+  
+  // process one flask against the requirements at a time
+  for(let i = 0; i < markings.length; i++){
+      if(flasks[markings[i][0]]){
+          flasks[markings[i][0]].push(markings[i][1])
+      } else {
+          flasks[markings[i][0]] = [markings[i][1]]
+      }
+      
+  }
+  
+  for(let i = 0; i < flaskTypes; i++){
+      let waste = 0;
+      
+      let lastK = 0
+      
+      if(flasks[i][flasks[i].length - 1] >= requirements[requirements.length -1]){
+          for(let j = 0; j < requirements.length; j++){
+              // loop through markings
+              flasks[i].find(mark => mark >= requirements[j])
+              for (let k = lastK; k < flasks[i].length; k++){
+                  if(flasks[i][k] >= requirements[j]){
+                      lastK = k;
+                      waste += flasks[i][k] - requirements[j];
+                      break;
+                  }
+              }
+              
+          }
+          if(waste < minWaste){
+              minWaste = waste;
+              minWasteIndex = i;
+          }        
+      }
+  }
+  
+  return minWasteIndex;
+
+
+}
