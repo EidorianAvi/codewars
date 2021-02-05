@@ -1279,3 +1279,35 @@ function chsFlsk(requirements, flaskTypes, markings) {
 
 
 }
+
+// Constraints
+// 1 <= n <= 100
+
+// Output Format
+// print the factorial of n
+
+// Sample Input
+// 25
+
+
+// Sample Output
+// 15511210043330985984000000
+
+// Explanation
+// 25! = 25 x 24 x 23 x ... x 3 x 2 x 1
+
+
+
+
+// Complete the extraLongFactorials function below.
+function extraLongFactorials(n) {
+    let output = BigInt(1);
+    
+    for(let i = n; i > 0; i--){
+        output *= BigInt(i);
+    }
+    
+    console.log(output.toString());
+
+}
+
