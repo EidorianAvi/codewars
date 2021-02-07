@@ -1324,3 +1324,23 @@ function jumpingOnClouds(c, k) {
   }
 
   r
+
+
+  // Complete the saveThePrisoner function below.
+
+// int n: the number of prisoners
+// int m: the number of sweets
+// int s: the chair number to begin passing out sweets from
+
+// Returns int: the chair number of the prisoner to warn
+
+function saveThePrisoner(n, m, s){
+  let poisoned = s + m - 1;
+  
+  if(poisoned > n){
+      return poisoned % n || n;
+  }
+  
+  return poisoned;
+
+}
