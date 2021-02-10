@@ -1360,3 +1360,49 @@ function processData(input) {
 
   console.log(geometricDistribution(n, p).toFixed(3))
 }
+
+
+// Takes in a string 
+
+// Returns the number of pairs of anagrams we can create from the string. 
+
+function sherlockAndAnagrams(s) {
+  let anagrams = 0;
+  let subStrings = [];
+  let sortedSubStrings = [];
+  let mapOfSubStrings = {};
+  
+  //First I want to find all the substrings
+  
+  for(let i = 0; i < s.length; i++){
+      for(let j = i + 1; j < s.length + 1; j++){
+          let subString = s.slice(i, j);
+          subStrings.push(subString);
+      }
+  }    
+  
+  for(let i = 0; i < subStrings.length; i++){
+      let sortedString = subStrings[i].split('').sort().join('');
+      sortedSubStrings.push(sortedString);
+  }
+  
+  for(let i = 0; i < sortedSubStrings.length; i++){
+      if(!mapOfSubStrings[sortedSubStrings[i]]){
+          mapOfSubStrings[sortedSubStrings[i]] = 1;   
+      } else {
+          mapOfSubStrings[sortedSubStrings[i]]++;
+      }
+  }
+  
+  for(const subString in mapOfSubStrings){
+      if(mapOfSubStrings[subString] > 1){
+          anagrams++
+      }
+  }
+  
+  console.log(mapOfSubStrings)
+//THIS SOLUTION DOES NOT WORK. WILL CONTINUE WORKING ON IT TOMORROW
+  return anagrams;
+
+}
+
