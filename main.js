@@ -1366,43 +1366,94 @@ function processData(input) {
 
 // Returns the number of pairs of anagrams we can create from the string. 
 
-function sherlockAndAnagrams(s) {
-  let anagrams = 0;
-  let subStrings = [];
-  let sortedSubStrings = [];
-  let mapOfSubStrings = {};
+// function sherlockAndAnagrams(s) {
+//   let anagrams = 0;
+//   let subStrings = [];
+//   let sortedSubStrings = [];
+//   let mapOfSubStrings = {};
   
-  //First I want to find all the substrings
+//   //First I want to find all the substrings
   
-  for(let i = 0; i < s.length; i++){
-      for(let j = i + 1; j < s.length + 1; j++){
-          let subString = s.slice(i, j);
-          subStrings.push(subString);
-      }
-  }    
+//   for(let i = 0; i < s.length; i++){
+//       for(let j = i + 1; j < s.length + 1; j++){
+//           let subString = s.slice(i, j);
+//           subStrings.push(subString);
+//       }
+//   }    
   
-  for(let i = 0; i < subStrings.length; i++){
-      let sortedString = subStrings[i].split('').sort().join('');
-      sortedSubStrings.push(sortedString);
-  }
+//   for(let i = 0; i < subStrings.length; i++){
+//       let sortedString = subStrings[i].split('').sort().join('');
+//       sortedSubStrings.push(sortedString);
+//   }
   
-  for(let i = 0; i < sortedSubStrings.length; i++){
-      if(!mapOfSubStrings[sortedSubStrings[i]]){
-          mapOfSubStrings[sortedSubStrings[i]] = 1;   
-      } else {
-          mapOfSubStrings[sortedSubStrings[i]]++;
-      }
-  }
+//   for(let i = 0; i < sortedSubStrings.length; i++){
+//       if(!mapOfSubStrings[sortedSubStrings[i]]){
+//           mapOfSubStrings[sortedSubStrings[i]] = 1;   
+//       } else {
+//           mapOfSubStrings[sortedSubStrings[i]]++;
+//       }
+//   }
   
-  for(const subString in mapOfSubStrings){
-      if(mapOfSubStrings[subString] > 1){
-          anagrams++
-      }
-  }
+//   for(const subString in mapOfSubStrings){
+//       if(mapOfSubStrings[subString] > 1){
+//           anagrams++
+//       }
+//   }
   
-  console.log(mapOfSubStrings)
-//THIS SOLUTION DOES NOT WORK. WILL CONTINUE WORKING ON IT TOMORROW
-  return anagrams;
+//   console.log(mapOfSubStrings)
+// //THIS SOLUTION DOES NOT WORK. WILL CONTINUE WORKING ON IT TOMORROW
+//   return anagrams;
 
+// }
+
+// Complete the sherlockAndAnagrams function below.
+
+// Takes in a string 
+
+// Returns the number of pairs of anagrams we can create from the string. 
+
+function sherlockAndAnagrams(s) {
+    let anagrams = 0;
+    let subStrings = [];
+
+    // First I want to find eliminate all strings with no duplicates.
+    let uniqS = [...new Set(s.split(''))]
+    if(uniqS.length === s.length){
+        return 0;
+    }
+    
+    // Then I want to figure out all of the substrings
+    for(let i = 0; i < s.length; i++){
+        for(let j = i + 1; j < s.length + 1; j++){
+            let subString = s.slice(i, j);
+            subStrings.push(subString);
+        }
+    }
+    
+    for(let i = 0; i < subStrings.length; i++){
+      let currentSubString = subStrings[i];
+      const otherSubStrings = subStrings.slice(i + 1)
+
+      for (let j = 0; j < otherSubStrings.length; j++) {
+        if (anagramCompare(currentSubString, otherSubStrings[j])) {
+          anagrams++;
+        }
+      }
+        
+    }
+
+    //THIS SOLUTION WORKS BUT ISN"T OPTIMIZED
+
+    return anagrams;
 }
+
+
+function anagramCompare(subString1, subString2){
+    const firstStringSorted = subString1.split('').sort().join('');
+    const secondStringSorted = subString2.split('').sort().join('');
+    
+    return firstStringSorted == secondStringSorted;
+}
+
+
 
