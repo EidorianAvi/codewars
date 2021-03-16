@@ -46,3 +46,12 @@ def square_sum(numbers)
   squares = numbers.map{|number| number * number}
   squares.reduce(0){|num, sum| num + sum}
 end
+
+# Complete the method that takes a boolean value and return a "Yes" string for true, or a "No" string for false.
+
+def bool_to_word bool
+  if bool == true
+    return "Yes"
+  end
+    "No"
+end
